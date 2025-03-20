@@ -1,11 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
 
+@theme {
+  --text-primary: #c1f11d; /* Define the hex color */
+  --bg-color:#FFFEE9;
+  --font-poppins: Poppins, sans-serif;
+
+}
+
+
+@font-face {
+  font-family:"Agrandir";
+  src: url("./assets/font/PPAgrandir-Bold.otf");
+  font-weight:900;
+  font-style: normal;
+}
+
+
+.font-agrandir{
+  font-family:'Agrandir';
+
+}
+.border-primary-color{
+  color: var(--text-primary); /* Create a class */
+
+}
+.text-primary {
+  color: var(--text-primary); /* Create a class */
+}
+
+
+.bg-color{
+  color:var(--bg-color);
+}
+
+.bg-primary{
+background-color: var(--text-primary);
+}
+
+/* .text-primary-custom {
+  color: var(--color-primary);
+} */
+
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: "Poppins", sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 400; */
 
   /* color-scheme: light white; */
   color:#000;
@@ -15,4 +58,29 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.highlight{
+  background-color: transparent;
+    background-image: url("./assets/image/heighlight.svg");
+    padding: 0 5px 10px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% 70%;
+
+
+}
+
+
+@keyframes animate {
+  0% {
+     bottom: 0px;
+  }
+  100% {
+    top: 30px;
+  }
+}
+
+.animate {
+  animation: fadeIn 1s ease-in-out;
 }
