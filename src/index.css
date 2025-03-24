@@ -7,6 +7,7 @@
   --text-primary: #c1f11d; /* Define the hex color */
   --bg-color:#FFFEE9;
   --font-poppins: Poppins, sans-serif;
+  --bg-dark-color:#3F3F3F;
 
 }
 
@@ -24,13 +25,16 @@
 
 }
 .border-primary-color{
-  color: var(--text-primary); /* Create a class */
+  border: 1px solid var(--text-primary); /* Create a class */
 
 }
 .text-primary {
   color: var(--text-primary); /* Create a class */
 }
 
+.bg-dark-color{
+  background-color: var(--bg-dark-color);
+}
 
 .bg-color{
   color:var(--bg-color);
@@ -58,7 +62,9 @@ background-color: var(--text-primary);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
+
 
 .highlight{
   background-color: transparent;
