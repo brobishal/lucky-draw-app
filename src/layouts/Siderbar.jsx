@@ -1,6 +1,6 @@
 import { useState, forwardRef } from "react";
 import { Input } from "../component/input/Input";
-
+import { Button } from "../component/button/Button";
 import * as XLSX from "xlsx";
 
 // Use forwardRef to forward the ref from parent to child
@@ -16,6 +16,10 @@ export const Siderbar = ({
   setCurrentName,
   pickWinner,
   setFileLoading,
+  setWinnerPrizeDetail,
+  winnerPrizeDetail,
+  prize,
+  noOfWinner,
   ref,
 }) => {
   // const [participants, setParticipants] = useState([]);
@@ -32,32 +36,6 @@ export const Siderbar = ({
 
     if (file) {
       const reader = new FileReader();
-
-      //     reader.onload = (event) => {
-      //       const workBook = XLSX.read(event.target.result, { type: "array" }); // Use 'array' instead of 'binary'
-      //       const sheetName = workBook.SheetNames[0]; // Get the name of the first sheet
-      //       const sheet = workBook.Sheets[sheetName]; // Get the sheet object
-      //       const sheetData = XLSX.utils.sheet_to_json(sheet, { defval: "" }); // Convert the sheet data to JSON
-      //       console.log("This is sheet", sheetData);
-
-      //         // Check if the sheet is empty
-      // if (!sheetData || sheetData.length === 0) {
-      //   console.error("Excel sheet is empty or incorrectly formatted.");
-      //   setParticipants([]);
-      //   return;
-      // }
-
-      //       // assuming the first column contains name or ids
-
-      //       const firstColumnKey = Object.keys(sheetData[0]); // Get first column name / Ensure data[0] exists
-      //       console.log(firstColumnKey);
-      //       const participantList = sheetData.map((row) => row[firstColumnKey]);
-      //       console.log(participantList);
-
-      //       setParticipants(participantList); // Store the data in the state
-      //       setWinner(null); // Reset winner when new file is uploaded
-      //     };
-
       reader.onload = (event) => {
         const workbook = XLSX.read(event.target.result, { type: "array" });
         const sheetName = workbook.SheetNames[0];
@@ -82,7 +60,7 @@ export const Siderbar = ({
         console.log(participantList);
 
         setParticipants(participantList);
-        setWinner(null); // Reset winner when new file is uploaded
+        setWinner([]); // Reset winner when new file is uploaded
 
         // Reset file input value after processing the file
         // if (ref.current) {
@@ -94,59 +72,60 @@ export const Siderbar = ({
     }
   };
 
+
+  const handleChange = (e) =>{
+    const {name, value} = e.target;
+    setWinnerPrizeDetail({...winnerPrizeDetail, [name]:value})
+    console.log(name, value);
+    setWinner([]);
+
+  }
+
   return (
-    <div>
-      <p className="text-2xl font-bold">File upload from here</p>
+    <div className="px-10 py-7 bg-dark-color h-full">
+      <p className="text-2xl font-bold text-white">File upload from here</p>
       <Input onChange={handleFileChange} ref={ref} />
       <form className=" mt-10">
-        <label className="font-bold text-2xl"> Select Prize</label>
-        <select
-          defaultValue="Server location"
-          className="select bg-white mt-2 border-2 border-primary-color"
-        >
-          <option disabled={true}>Server location</option>
-          <option>North America</option>
-          <option>EU west</option>
-          <option>South East Asia</option>
-        </select>
+        <div className="mt-7">
+          <label className="font-light text-lg text-white"> Select Prize</label>
+          <select
+            name="prize"
+            onChange={handleChange}
+            value={prize}
+            defaultValue="Server location"
+            className="select bg-white mt-2 border-2 text-black py-2 w-full rounded"
+          >
+            <option>Select Prize</option>
+            <option>Bajaj Pulsar 150cc</option>
+            <option>Galaxy A55 5G (8/256GB)</option>
+            <option>Mi 32 HD Smart LED TV</option>
+            <option>Ultima Nova Pro Smart watch</option>
+            <option>Ultima Boost 20K Pro 20000mAh Powerbank</option>
+            <option>Ultima Atom 192 Bluetooth Earbuds</option>
+          </select>
+        </div>
+
+        <div className="mt-7">
+          <label className="font-light text-lg text-white "> Select a no of winner</label>
+          <input
+          name="noOfWinner"
+            type="number"
+            onChange={handleChange}
+            value={noOfWinner}
+            className="input validator text-white focus:none rounded w-full mt-2 py-2"
+            required
+            placeholder="Type a number between 1 to 10"
+            min="1"
+            max="10"
+            title="Must be between be 1 to 10"
+            
+          />
+          <p className="validator-hint">Must be between be 1 to 10</p>
+        </div>
       </form>
+      <Button onClick={pickWinner} shuffling={shuffling} winner={winner} />
 
-      {/* <p>{excelData && excelData.map((data, index) =>{
-        <p key={index}>
-          {
-            Object.values(data).map((value, index)=>{
-              <p key={index}>{value}</p>
-            })
-          }
-        </p>
-       
-      })}</p> */}
-
-      {/* Displaying the Excel data as a table if it's loaded
-
-      {participants.length > 0 && (
-        <div>
-          <p className="mb-2">Total Participants: {participants.length}</p>
-          <button
-            onClick={pickWinner}
-            disabled={shuffling || winner !== null} 
-            className={`px-4 py-2 rounded ${winner || shuffling ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 text-white"}`}
-            >
-            {shuffling ? "Shuffling a name": "Pick a Winner"}
-          </button>
-        </div>
-      )}
-      {shuffling && (
-        <div className="mt-4 text-xl font-bold animate-bounce text-red-500">
-          🔄 {currentName} 🔄
-        </div>
-      )}
-
-      {winner && (
-        <div className="mt-4 p-3 bg-green-100 border border-green-400">
-          <h2 className="text-xl font-bold">🎉 Winner: {winner} 🎉</h2>
-        </div>
-      )} */}
+      
     </div>
   );
 };
