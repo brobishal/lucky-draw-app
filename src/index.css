@@ -25,7 +25,7 @@
 
 }
 .border-primary-color{
-  border: 1px solid var(--text-primary); /* Create a class */
+  border: 10px dotted var(--text-primary); /* Create a class */
 
 }
 .text-primary {
