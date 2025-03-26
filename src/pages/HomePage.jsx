@@ -501,10 +501,11 @@ const HomePage = () => {
       }
 
       const randomIndex = Math.floor(Math.random() * participants.length);
+      console.log(randomIndex);
       setCurrentName(participants[randomIndex]);
 
       counter++;
-      if (counter >= 100) { // Reduced from 200 for better UX
+      if (counter >= 300) { // Reduced from 200 for better UX
         clearInterval(shuffleInterval);
         
         // Send data to web worker for processing
@@ -570,13 +571,13 @@ const HomePage = () => {
                       {winner.map((w, index) => (
                         <li
                           key={index}
-                          className="list-decimal border-2 border-black px-2 text-black text-2xl font-medium"
+                          className="list-decimal border-2 border-black px-2 text-black text-4xl font-medium"
                         >
                           {w}
                         </li>
                       ))}
                     </ul>
-                    <p className="text-center text-4xl font-poppins font-bold bg-white px-4">
+                    <p className="text-center text-3xl font-poppins font-bold bg-white px-4">
                       <span className="text-primary">Your Prize</span>: {winnerPrizeDetail.prize}
                     </p>
                   </div>
