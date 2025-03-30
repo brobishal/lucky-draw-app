@@ -522,8 +522,8 @@ const HomePage = () => {
 
   return (
     <div className="bg-[#FFFEE9]" ref={containerRef}>
-      <div className="grid grid-cols-10 items-center content-center">
-        <div className="relative col-span-8 h-screen bg-[#FFFEE9] flex flex-col gap-4 items-center justify-center">
+      <div className="grid grid-cols-12 items-center content-center">
+        <div className="relative col-span-9 h-screen bg-[#FFFEE9] flex flex-col gap-4 items-center justify-center">
           {fileLoading && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="text-white text-2xl">
@@ -546,7 +546,7 @@ const HomePage = () => {
               </h1>
             </div>
           </div>
-          <span className="text-3xl font-bold font-agrandir">Giveway</span>
+          <span className="text-3xl font-bold font-agrandir">Giveaway</span>
           <p className="w-[70%] font-light text-xs text-col text-center font-poppins">
             The moment you've been waiting for is here! We are thrilled to announce the lucky winners🎟️✨
           </p>
@@ -619,7 +619,7 @@ const HomePage = () => {
           <img src={patterns4} className="absolute w-[300px] -right-40 -bottom-0" alt="" />
         </div>
 
-        <div className="col-span-2 h-full flex items-center z-50">
+        <div className="col-span-3 h-full flex items-center z-50">
           <Siderbar
             participants={participants}
             setParticipants={setParticipants}
